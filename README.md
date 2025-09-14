@@ -28,7 +28,7 @@ You will need a free [Hugging Face API Key](https://huggingface.co/settings/toke
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/your-username/pixel-forge.git](https://github.com/your-username/pixel-forge.git)
+    git clone https://github.com/ishansaxena012/pixel-forge.git
     ```
 2.  **Open the project:**
     ```sh
