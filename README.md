@@ -2,8 +2,6 @@
 
 A client-side web application for generating AI images using the Hugging Face Inference API, built with vanilla HTML, CSS, and JavaScript.
 
-**[Live Demo &raquo;]([Your Live Project URL])** *(Add your deployment link here)*
-
 ## Features
 
 * **Modern UI:** A clean, fully responsive interface with a light and dark mode.
