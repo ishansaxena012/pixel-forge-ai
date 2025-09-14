@@ -37,7 +37,5 @@ You will need a free [Hugging Face API Key](https://huggingface.co/settings/toke
 3.  **Launch the application:**
     Open the `index.html` file in your browser. The application will prompt for your API key upon first use.
 
-## License
+___________
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-```eof
