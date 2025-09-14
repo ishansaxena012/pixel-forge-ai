@@ -22,7 +22,7 @@ A client-side web application for generating AI images using the Hugging Face In
 
 ### Prerequisites
 
-You will need a free [Hugging Face API Key](https://huggingface.co/settings/tokens) with "write" permissions.
+You will require a free [Hugging Face API Key](https://huggingface.co/settings/tokens) .
 
 ### Running Locally
 
