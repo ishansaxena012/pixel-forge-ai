@@ -1,0 +1,504 @@
+/* --- Google Font Import --- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* --- CSS Variables from the "Oyster Glow" Palette --- */
+:root {
+  /* Light Mode */
+  --bg-color: #f8f4f0;
+  --surface-color: #ffffff;
+  --border-color: #ddd0c8;
+  --accent-color: #b0a89f;
+  --text-primary: #5c5552;
+  --text-light: #f8f4f0;
+  --shadow-color: rgba(176, 168, 159, 0.2);
+  --shadow-color-hover: rgba(176, 168, 159, 0.3);
+  /* Error State Colors */
+  --error-color: #d9534f;
+  --error-bg-color: #fdfbfb;
+}
+
+/* --- Dark Mode Variables --- */
+body.dark-mode {
+  --bg-color: #2a2729;
+  --surface-color: #383436;
+  --border-color: #4f4a4d;
+  --accent-color: #ddd0c8;
+  --text-primary: #f8f4f0;
+  --text-secondary: #b0a89f;
+  --text-light: #2a2729;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-hover: rgba(0, 0, 0, 0.4);
+  /* Error State Colors */
+  --error-color: #ff6b6b;
+  --error-bg-color: #383436;
+}
+/* --- General Reset & Body Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* --- Themed Text Selection --- */
+::selection {
+    background-color: var(--accent-color);
+    color: var(--surface-color);
+}
+
+/* --- Custom Scrollbar Styling --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* --- Keyframes for Spinner --- */
+@keyframes spin-animation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-y: auto;
+}
+
+/* --- Main Container --- */
+.container {
+  width: 100%;
+  max-width: 800px;
+  min-height: 200px;
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* --- Header Section --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: transform 0.2s ease;
+}
+.logo-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-color);
+  transform: scale(1.1) rotate(15deg);
+}
+
+/* --- Form & Prompt Area --- */
+.prompt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.prompt-container {
+  position: relative;
+}
+
+.prompt-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem 3.5rem 1rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--bg-color);
+  font-size: 1rem;
+  color: var(--text-primary);
+  resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.prompt-input::placeholder {
+  color: var(--text-secondary, var(--accent-color));
+}
+
+.prompt-input:focus-visible {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+.prompt-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.prompt-btn:hover {
+  color: var(--text-primary);
+  transform: scale(1.2);
+}
+
+/* --- Prompt Actions (Selects & Button) --- */
+.prompt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.select-wrapper {
+  flex-grow: 1;
+  position: relative;
+  min-width: 150px;
+}
+
+.select-wrapper::after {
+  content: "\f078"; /* Font Awesome chevron-down */
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--accent-color);
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--surface-color);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-select:required:invalid {
+  color: var(--text-secondary, var(--accent-color));
+}
+
+.custom-select:focus-visible {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+/* Styling for <option> tags is limited, but we can set basics */
+.custom-option {
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+}
+
+
+/* --- Generate Button --- */
+.generate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--text-primary);
+  color: var(--text-light);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  flex-grow: 1;
+  min-width: 150px;
+}
+
+.generate-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--surface-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color-hover);
+}
+
+.generate-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* --- Disabled Button State --- */
+.generate-btn:disabled {
+    background-color: var(--border-color);
+    color: var(--accent-color);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.generate-btn:disabled .fa-spinner {
+    animation: spin-animation 1s linear infinite;
+}
+
+/* --- Image Gallery Grid --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  transition: border-color 0.3s ease;
+  min-height: 150px;
+  align-content: flex-start;
+}
+
+/* --- Empty Gallery State --- */
+.gallery-grid:empty {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--accent-color);
+    border-radius: 12px;
+    border: 2px dashed var(--border-color);
+}
+.gallery-grid:empty::before {
+    content: "Your creations will appear here...";
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+.img-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 1 / 1;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-card:not(.loading):not(.error) {
+    display: block;
+}
+
+.img-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px var(--shadow-color-hover);
+}
+
+.result-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.img-card:hover .img-overlay {
+  opacity: 1;
+}
+
+.img-download-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.8);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.img-card:hover .img-download-btn {
+  transform: scale(1);
+}
+
+.img-download-btn:hover {
+  background-color: #fff;
+}
+
+/* --- Image Card States (Loading & Error) --- */
+.status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--accent-color);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin-animation 1s linear infinite;
+}
+
+.error-icon {
+    font-size: 2.5rem;
+    color: var(--error-color);
+}
+
+.status-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* --- Conditional Visibility for Icons --- */
+.img-card.loading .error-icon,
+.img-card.error .spinner,
+.img-card:not(.loading):not(.error) .status-container {
+    display: none;
+}
+
+/* --- Error State Specific Styles --- */
+.img-card.error {
+  background-color: var(--error-bg-color);
+  border: 2px dashed var(--error-color);
+}
+
+.img-card.error .status-text {
+  color: var(--error-color);
+}
+
+/* --- All Interactive Elements Focus State --- */
+.theme-toggle:focus-visible,
+.prompt-btn:focus-visible,
+.generate-btn:focus-visible,
+.img-download-btn:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 50%; /* Adjust for circular buttons */
+}
+.generate-btn:focus-visible {
+    border-radius: 8px; /* Square off for rectangular elements */
+}
+
+
+/* --- Responsive Design --- */
+/* For tablets and larger phones */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+  .header h1 {
+    font-size: 1.25rem;
+  }
+  .prompt-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .select-wrapper,
+  .generate-btn {
+    min-width: unset;
+    width: 100%;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* For smaller mobile phones */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 1rem;
+  }
+  .header h1 {
+    font-size: 1.15rem;
+  }
+  .generate-btn {
+    padding: 0.6rem 1.2rem;
+  }
+  .gallery-grid {
+    /* Stacks to a single column on very small screens */
+    grid-template-columns: 1fr;
+  }
+  .prompt-input {
+      min-height: 100px;
+  }
+}
+
